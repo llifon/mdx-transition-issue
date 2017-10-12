@@ -1,0 +1,92 @@
+﻿<Window x:Class="TransitionOpacityIssue.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid>
+        <materialDesign:Transitioner SelectedIndex="0"
+                                     AutoApplyTransitionOrigins="True">
+
+            <materialDesign:Transitioner.Resources>
+
+                <Style TargetType="materialDesign:Card">
+                    <Setter Property="Width" Value="400"/>
+                    <Setter Property="Height" Value="500"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+
+                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                    <Setter Property="Width" Value="184"/>
+                    <Setter Property="Height" Value="50"/>
+                    <Setter Property="FontSize" Value="22"/>
+
+                </Style>
+
+                <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignTitleTextBlock}">
+                    <Setter Property="Width" Value="184"/>
+                    <Setter Property="FontSize" Value="22"/>
+                    <Setter Property="TextAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="Thin"/>
+                </Style>
+
+            </materialDesign:Transitioner.Resources>
+
+            <materialDesign:TransitionerSlide >
+
+                <materialDesign:TransitionerSlide.ForwardWipe>
+                    <materialDesign:SlideWipe Direction="Down"/>
+                </materialDesign:TransitionerSlide.ForwardWipe>
+
+                <materialDesign:Card>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="FIRST SLIDE" />
+                        <Button Content="Next"
+                                Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"/>
+                    </StackPanel>
+                </materialDesign:Card>
+            </materialDesign:TransitionerSlide>
+
+            <materialDesign:TransitionerSlide >
+
+                <materialDesign:TransitionerSlide.ForwardWipe>
+                    <materialDesign:SlideWipe Direction="Up"/>
+                </materialDesign:TransitionerSlide.ForwardWipe>
+
+                <materialDesign:Card>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="SECOND SLIDE" 
+                                   Width="10"
+                                   TextWrapping="Wrap"/>
+
+                        <Button Content="Back" 
+                                Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"/>
+
+                        <Button Content="Next" 
+                                    Command="{x:Static materialDesign:Transitioner.MoveNextCommand}">
+                        </Button>
+                    </StackPanel>
+                </materialDesign:Card>
+            </materialDesign:TransitionerSlide>
+
+            <materialDesign:TransitionerSlide>
+
+                <materialDesign:TransitionerSlide.BackwardWipe>
+                    <materialDesign:CircleWipe/>
+                </materialDesign:TransitionerSlide.BackwardWipe>
+
+                <materialDesign:Card>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="THIRD SLIDE" />
+                        <Button Content="Back" 
+                                Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}">
+                        </Button>
+                    </StackPanel>
+                </materialDesign:Card>
+            </materialDesign:TransitionerSlide>
+
+        </materialDesign:Transitioner>
+    </Grid>
+</Window>
